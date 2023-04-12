@@ -22,14 +22,14 @@
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         font-weight: bold;
         text-align: center;
-        color:#fff;
+        color:#000;
     }
 
     .joke-container {
         width: 100%;
         max-width: 700px;
-        padding: 25px 30 px;
-        border-radius: 10 px;
+        padding: 25px 30px;
+        border-radius: 10px;
         background: #61f2d2;
     }
 
@@ -44,7 +44,7 @@
     }
 
     button {
-        padding: 0.5 rem 2rem;
+        padding: 0.5rem 2rem;
         border: none;
         border-radius: 15px;
         background: #181818;
@@ -54,7 +54,7 @@
     }
 
     button:hover{
-        filter:brightness(140%)
+        filter:brightness(140%);
     }
    </style>
 </head>
@@ -73,6 +73,7 @@
         const randomJokeGenerator = {
             apiUrl : "https://api.chucknorris.io/jokes/random",
             jokesArr : [], 
+            jokeSpan: document.getElementById("joke"),
 
             init: function() {
                 console.log("App start");
@@ -93,13 +94,15 @@
             updateUIWithJoke: function (data) {
                 const jokeStr = data.value;
                 console.log(jokeStr)
+                this.jokeSpan.innerHTML = jokeStr;
 
             },
 
             addListeners: function() {
                 document.getElementById("next-joke")
-                .addEventListener("clikc", function() {
+                .addEventListener("click",(event) => {
                     console.log("click");
+                    this.getNextJoke();
                 });
             }
         };
